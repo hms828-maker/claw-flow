@@ -1,18 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat - Claw Flow</title>
+    <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .content { flex: 1; display: flex; flex-direction: column; }
+        
+        nav {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 50px;
+            display: flex;
+                        justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5em; font-weight: bold; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            opacity: 0.8;
+        }
+                .chat-container {
+            max-width: 800px;
+            margin: 100px auto 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .chat-header { text-align: center; margin-bottom: 20px; }
+        .chat-header h1 { font-size: 2em; }
+        .chat-header p { opacity: 0.7; }
+        
+        .chat-box {
+            flex: 1;
+                        background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            overflow-y: auto;
+            min-height: 400px;
+            max-height: 60vh;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+                
+        .message.user {
+            background: #667eea;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message.bot {
+            background: rgba(255,255,255,0.15);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message .time { font-size: 0.7em; opacity: 0.6; margin-top: 5px; }
+        
+        .input-area { display: flex; gap: 10px; }
+                
+        .input-area input {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        
+        .input-area button {
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+            font-size: 1em;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .typing { display: none; padding: 10px; opacity: 0.6; }
+        
+        footer {
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 15px;
+        }
+        footer a { color: #667eea; text-decoration: none; }
+    </style>
+    </head>
+<body>
+    <div class="content">
+        <nav>
+            <div class="logo">🦞 Claw Flow</div>
+            <div class="nav-links">
+                <a href="index.html">首頁</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">關於</a>
+                <a href="contact.html">聯絡</a>
+                <a href="chat.html">🤖 AI Chat</a>
+            </div>
+        </nav>
+
+        <div class="chat-container">
+                        <div class="chat-header">
+                <h1>🤖 AI Chat</h1>
+                <p>同AI傾偈啦！</p>
+            </div>
+            
+            <div class="chat-box" id="chatBox">
+                <div class="message bot">
+                    你好！我係Claw Flow既AI助手！👋
+                    <div class="time">現在</div>
+                </div>
+                <div class="typing" id="typing">AI緊...</div>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="打啲野問AI..." onkeypress="handleKeyPress(event)">
+                                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Claw Flow. All rights reserved.</p>
+    </footer>
+
     <script>
         const chatBox = document.getElementById('chatBox');
         const userInput = document.getElementById('userInput');
         const typing = document.getElementById('typing');
         
         function handleKeyPress(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+                        if (e.key === 'Enter') { sendMessage(); }
         }
         
         function addMessage(text, isUser) {
             const div = document.createElement('div');
-            div.className = `message ${isUser ? 'user' : 'bot'}`;
-                        div.innerHTML = `${text}<div class="time">現在</div>`;
+            div.className = 'message ' + (isUser ? 'user' : 'bot');
+            div.innerHTML = text + '<div class="time">現在</div>';
             chatBox.appendChild(div);
             chatBox.scrollTop = chatBox.scrollHeight;
         }
@@ -20,34 +168,23 @@
         async function sendMessage() {
             const text = userInput.value.trim();
             if (!text) return;
-            
-            // Add user message
-            addMessage(text, true);
+                        addMessage(text, true);
             userInput.value = '';
-            
-            // Show typing
             typing.style.display = 'block';
-                        chatBox.scrollTop = chatBox.scrollHeight;
+            chatBox.scrollTop = chatBox.scrollHeight;
             
             try {
-                // Call OpenClaw API (需要改成你既API)
                 const response = await fetch('http://127.0.0.1:18789/api/chat', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        message: text,
-                        model: 'minimax/MiniMax-M2.5'
-                    })
+                    body: JSON.stringify({ message: text, model: 'minimax/MiniMax-M2.5' })
                 });
-                
                 const data = await response.json();
                 addMessage(data.reply || 'sorry, 我答唔到...', false);
-                            } catch (error) {
-                // 如果API唔work，用simulated response
-                addMessage('暂时连接不到AI，请稍后再试。或者你可以加入Forum同我地既社区倾偈！', false);
-            }
+            } catch (error) {
+                addMessage('暂时连接不到AI，请稍后再试。或者你可以加入Forum倾偈！', false);
+                            }
             
-            // Hide typing
             typing.style.display = 'none';
         }
     </script>
