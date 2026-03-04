@@ -2,38 +2,130 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Claw Flow</title>
     <style>
-                body { font-family: 'Microsoft JhengHei', Arial; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 50px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .post { background: rgba(255,255,255,0.1); padding: 20px; margin: 20px 0; border-radius: 10px; }
-        .post h2 { color: #667eea; }
-        .date { opacity: 0.6; font-size: 0.9em; }
-        a { color: #667eea; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', Arial;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .content { flex: 1; padding-bottom: 50px; }
+        
+        nav {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5em; font-weight: bold; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 100px auto 0;
+            padding: 30px 20px;
+        }
+        
+        h1 { color: #667eea; margin-bottom: 30px; }
+        .back { color: white; text-decoration: none; opacity: 0.8; }
+        
+        .post {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+        
+        .post h2 { color: #667eea; margin-bottom: 10px; }
+        .post .date { opacity: 0.6; font-size: 0.9em; margin-bottom: 15px; }
+        .post p { line-height: 1.8; margin-bottom: 15px; }
+        .post .tag {
+            display: inline-block;
+            background: #667eea;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+        
+        footer {
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+        footer a { color: #667eea; text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📝 Blog</h1>
-        <p><a href="index.html">← 返回首頁</a></p>
-        
-        <div class="post">
-            <h2>🤖 AI時代來臨！我地點樣準備？</h2>
-                        <p class="date">2026-03-04</p>
-            <p>AI已經改變我地既生活... <a href="#">Read More →</a></p>
-        </div>
-        
-        <div class="post">
-            <h2>💡 點樣開始學AI？</h2>
-            <p class="date">2026-03-01</p>
-            <p>對於初學者既建議... <a href="#">Read More →</a></p>
-        </div>
-        
-        <div class="post">
-            <h2>🌏 亞洲AI發展前景</h2>
-            <p class="date">2026-02-28</p>
-            <p>亞洲市場既機會... <a href="#">Read More →</a></p>
-        </div>
+    <div class="content">
+        <nav>
+            <div class="logo">🦞 Claw Flow</div>
+            <div class="nav-links">
+                <a href="index.html">首頁</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">關於</a>
+                <a href="contact.html">聯絡</a>
             </div>
+        </nav>
+
+        <div class="container">
+            <h1>📝 Blog</h1>
+            <p><a href="index.html" class="back">← 返回首頁</a></p>
+            
+            <div class="post">
+                <span class="tag">🤖 AI趨勢</span>
+                <h2>🤖 AI時代來臨！我地點樣準備？</h2>
+                <p class="date">2026-03-04</p>
+                <p>AI已經徹底改變我地既生活！由ChatGPT到Midjourney，AI既發展速度快到令人難以置信。</p>
+                <p>咁我地應該點樣準備呢？</p>
+                <p><strong>1. 學識使用AI工具</strong><br>唔洗學寫Code，首先要學點樣同AI溝通。掌握Prompt Engineering已經成為必备技能。</p>
+                <p><strong>2. 保持批判性思維</strong><br>AI都會錯，唔好100%相信佢既Output。要學識Fact-check。</p>
+                <p><strong>3. 擁抱變化</strong><br>AI既發展唔會停，我地要學識適應呢啲變化。</p>
+            </div>
+            
+            <div class="post">
+                <span class="tag">💡 教學</span>
+                <h2>💡 點樣開始學AI？</h2>
+                <p class="date">2026-03-01</p>
+                <p>好多人想學AI，但係唔知點開始。其實學AI唔難！</p>
+                <p><strong>新手入門建議：</strong></p>
+                <p>1. <strong>玩ChatGPT/Claude</strong> - 最直接體驗AI<br>
+                2. <strong>學Midjourney</strong> - AI圖像生成<br>
+                3. <strong>睇YouTube教學</strong> - 免費學習資源<br>
+                4. <strong>加入AI社區</strong> - 同其他人交流</p>
+            </div>
+            
+            <div class="post">
+                <span class="tag">🌏 亞洲</span>
+                <h2>🌏 亞洲AI發展前景</h2>
+                <p class="date">2026-02-28</p>
+                <p>亞洲市場正在快速追趕西方！</p>
+                <p><strong>中國既發展：</strong><br>百度、阿里巴巴、騰訊等大公司都投入大量資源發展AI。</p>
+                <p><strong>東南亞既機會：</strong><br>東南亞既數碼轉型正在加速，印尼、越南等國家既AI Startup越來越多！</p>
+                <p>Claw Flow就係希望連接亞洲既AI愛好者，一齊推動AI發展！</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Claw Flow. All rights reserved.</p>
+        <p>Email: <a href="mailto:welcome@clawflow.ai">welcome@clawflow.ai</a></p>
+    </footer>
 </body>
 </html>

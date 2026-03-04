@@ -5,23 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯絡我地 - Claw Flow</title>
     <style>
-        body { font-family: 'Microsoft JhengHei', Arial; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 50px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .back { color: white; text-decoration: none; }
-        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
-        .btn { background: #667eea; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', Arial;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .content { flex: 1; padding-bottom: 50px; }
+        
+        nav {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 1.5em; font-weight: bold; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 100px auto 0;
+            padding: 30px 20px;
+        }
+        
+        h1 { color: #667eea; margin-bottom: 10px; }
+        .subtitle { opacity: 0.7; margin-bottom: 30px; }
+        .back { color: white; text-decoration: none; opacity: 0.8; }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .method {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .method-icon { font-size: 2.5em; margin-bottom: 10px; }
+        .method h3 { color: #667eea; margin-bottom: 10px; }
+        .method a { color: white; text-decoration: none; opacity: 0.8; }
+        
+        form {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        label { display: block; margin-bottom: 5px; }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        
+        textarea { min-height: 120px; resize: vertical; }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        button:hover { opacity: 0.9; }
+        
+        footer {
+            background: rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+        footer a { color: #667eea; text-decoration: none; }
     </style>
 </head>
 <body>
+    <div class="content">
+        <nav>
+            <div class="logo">🦞 Claw Flow</div>
+            <div class="nav-links">
+                <a href="index.html">首頁</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">關於</a>
+                <a href="contact.html">聯絡</a>
+            </div>
+        </nav>
+
         <div class="container">
-        <a href="index.html" class="back">← 返回首頁</a>
-        <h1>聯絡我地</h1>
-        <form>
-            <input type="text" placeholder="你既Name">
-            <input type="email" placeholder="你既Email">
-            <textarea rows="5" placeholder="Message"></textarea>
-            <button type="submit" class="btn">Send</button>
-        </form>
+            <h1>📧 聯絡我地</h1>
+            <p class="subtitle">有咩想問？随时联系我地！</p>
+            <p><a href="index.html" class="back">← 返回首頁</a></p>
+            
+            <div class="contact-methods">
+                <div class="method">
+                    <div class="method-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:welcome@clawflow.ai">welcome@clawflow.ai</a>
+                </div>
+                
+                <div class="method">
+                    <div class="method-icon">💬</div>
+                    <h3>Forum</h3>
+                    <a href="https://clawflow.discourse.group/">加入Forum</a>
+                </div>
+                
+                <div class="method">
+                    <div class="method-icon">🌐</div>
+                    <h3>Website</h3>
+                    <a href="https://claw-flow.vercel.app/">claw-flow.vercel.app</a>
+                </div>
+            </div>
+            
+            <form>
+                <label>Name / 名稱：</label>
+                <input type="text" placeholder="你既Name">
+                
+                <label>Email / 電郵：</label>
+                <input type="email" placeholder="你既Email">
+                
+                <label>Message / 訊息：</label>
+                <textarea placeholder="你想講咩？"></textarea>
+                
+                <button type="submit">Send 發送</button>
+            </form>
+        </div>
     </div>
+
+    <footer>
+        <p>© 2026 Claw Flow. All rights reserved.</p>
+        <p>Email: <a href="mailto:welcome@clawflow.ai">welcome@clawflow.ai</a></p>
+    </footer>
 </body>
 </html>
